@@ -535,7 +535,7 @@ public class WifiAppWidgetProvider extends AppWidgetProvider {
 	}
 	
 
-	private static int containsSSID(final String ssid,
+	private static int containsSSID_return_int(final String ssid,
 			final List<WifiConfiguration> wifiConfigs) {
 		for (WifiConfiguration sResult : wifiConfigs) {
 			if (StringUtil.removeQuotes(sResult.SSID).equals(ssid))
@@ -811,7 +811,7 @@ public class WifiAppWidgetProvider extends AppWidgetProvider {
 			/*
 			 * Look for scan result in our known list
 			 */
-			index = containsSSID(sResult.SSID, wifiConfigs); 
+			index = containsSSID_return_int(sResult.SSID, wifiConfigs); 
 			if (index > -1) {
 				
 				//scanned is in saved
@@ -977,7 +977,7 @@ public class WifiAppWidgetProvider extends AppWidgetProvider {
 						else
 						{
 							//if SSID present continue with the next network
-							if (containsSSID(aScannedNetwork.SSID, wifiConfigsUpdated) != -1)
+							if (containsSSID_return_int(aScannedNetwork.SSID, wifiConfigsUpdated) != -1)
 							{
 								Log.i(TAG, aScannedNetwork.SSID + " is present in the saved networks list. Skipping the step to add this SSID.");
 								continue;
@@ -1004,7 +1004,7 @@ public class WifiAppWidgetProvider extends AppWidgetProvider {
 						else
 						{
 							//if SSID present enable it
-							if (containsSSID(aScannedNetwork.SSID, wifiConfigsAdded) != -1)
+							if (containsSSID_return_int(aScannedNetwork.SSID, wifiConfigsAdded) != -1)
 							{
 								Log.i(TAG, "Added the OPEN network " + aScannedNetwork.SSID + " to the saved list.");
 								for( WifiConfiguration i : wifiConfigsAdded ) 
